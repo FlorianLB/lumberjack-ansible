@@ -1,0 +1,21 @@
+server {
+    listen {{ nginx_port_dashboard }};
+    server_name {{ host_name }};
+
+    root         /home/vagrant/www/dashboard;
+
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_intercept_errors on;
+        fastcgi_pass   unix:/var/run/php5-fpm.sock;
+        fastcgi_index  index.php;
+    }
+
+    location / {
+        # This is cool because no php is touched for static content
+        index index.html index.php;
+    }
+}

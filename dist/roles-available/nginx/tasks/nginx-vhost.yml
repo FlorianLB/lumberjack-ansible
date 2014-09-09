@@ -1,0 +1,10 @@
+---
+  - name: add nginx vhost
+    action: "template src=vhost-sf2.j2 dest=/etc/nginx/sites-available/{{ host_name }}"
+    notify:
+      - restart nginx
+
+  - name: link nginx vhost in sites-enabled
+    action: "file src=/etc/nginx/sites-available/{{ host_name }} dest=/etc/nginx/sites-enabled/{{ host_name }} state=link"
+    notify:
+      - restart nginx

@@ -1,0 +1,72 @@
+{
+    "components": [
+        {
+            "name": "MySQL",
+            "icon": "assets/img/mysql-logo.png",
+            "icon_height": 60,
+            "input_name": "mysql",
+            "category": "database"
+        },
+        {
+            "name": "MongoDB",
+            "icon": "assets/img/mongodb-logo.png",
+            "icon_height": 60,
+            "input_name": "mongodb",
+            "category": "database"
+        },
+        {
+            "name": "Elasticsearch",
+            "icon": "assets/img/elasticsearch-logo.png",
+            "icon_height": 30,
+            "input_name": "elasticsearch",
+            "category": "search"
+        },
+        {
+            "name": "Redis",
+            "icon": "assets/img/redis-logo.png",
+            "icon_height": 60,
+            "input_name": "redis",
+            "category": "kv-store",
+            "supported": false
+        },
+        {
+            "name": "Memcached",
+            "icon": "assets/img/memcached-logo.png",
+            "icon_height": 70,
+            "input_name": "memcached",
+            "category": "kv-store"
+        },
+        {
+            "name": "PimpMyLog",
+            "icon": "assets/img/pimpmylog-logo.png",
+            "icon_height": 60,
+            "input_name": "pimpmylog",
+            "category": "tools"
+        },
+        {
+            "name": "MailCatcher",
+            "icon": "assets/img/mailcatcher-logo.png",
+            "icon_height": 60,
+            "input_name": "mailcatcher",
+            "category": "tools"
+        }
+    ],
+    "categories": {
+        "database": {
+            "name": "Databases",
+            "glyphicon": "hdd"
+        },
+        "search": {
+            "name": "Search Servers",
+            "glyphicon": "search"
+        },
+        "kv-store": {
+            "name": "Key-Value Stores",
+            "glyphicon": "shopping-cart"
+        },
+        "tools": {
+            "name": "Tools",
+            "glyphicon": "wrench"
+        }
+    }
+}

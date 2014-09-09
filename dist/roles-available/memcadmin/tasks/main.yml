@@ -1,0 +1,19 @@
+---
+
+- name: Memcadmin | get pimpmylog package
+  git: repo=https://github.com/rewi/memcadmin.git dest=/home/vagrant/www/memcadmin
+  tags: memcadmin
+
+- name: Memcadmin | add memcadmin vhost
+  action: template src=nginx.memcadmin.vhost.j2 dest=/etc/nginx/sites-available/memcadmin
+  tags: memcadmin
+
+- name: Memcadmin | link nginx memcadmin vhost in sites-enabled
+  action: file src=/etc/nginx/sites-available/memcadmin dest=/etc/nginx/sites-enabled/memcadmin state=link
+  tags: memcadmin
+  notify:
+    - restart nginx
+
+- name: Memcadmin | add configuration file
+  copy: src=config.ini dest=/home/vagrant/www/memcadmin/config/config.ini
+  tags: memcadmin

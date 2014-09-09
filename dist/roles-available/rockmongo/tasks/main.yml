@@ -1,0 +1,33 @@
+---
+
+- apt: name=unzip state=present
+
+- name: RockMongo | download
+  command: wget -P /home/vagrant/ http://rockmongo.com/release/rockmongo-1.1.5.zip
+  tags: rockmongo
+
+- name: RockMongo | unzip
+  shell: unzip /home/vagrant/rockmongo-1.1.5.zip -d /home/vagrant/www
+  tags: rockmongo
+
+- name: RockMongo | rm zip
+  command: rm /home/vagrant/rockmongo-1.1.5.zip
+  tags: rockmongo
+
+- name: RockMongo | rm zip
+  command: rm -rf /home/vagrant/www/__MACOSX
+  tags: rockmongo
+
+- name: RockMongo | remove auth
+  lineinfile: dest=/home/vagrant/www/rockmongo/config.php line="$MONGO['servers'][$i]['control_auth'] = false;"
+  tags: rockmongo
+
+- name: RockMongo | add nginx vhost
+  action: template src=nginx.rockmongo.vhost.j2 dest=/etc/nginx/sites-available/rockmongo
+  tags: rockmongo
+
+- name: RockMongo | link nginx vhost in sites-enabled
+  action: file src=/etc/nginx/sites-available/rockmongo dest=/etc/nginx/sites-enabled/rockmongo state=link
+  tags: rockmongo
+  notify:
+    - restart nginx

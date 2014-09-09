@@ -1,0 +1,21 @@
+
+server {
+    listen {{ nginx_port_pimpmylog }};
+    server_name {{ host_name }};
+
+    root         /home/vagrant/www/pimpmylog;
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_index index.php;
+        fastcgi_pass  unix:/var/run/php5-fpm.sock;
+        include       fastcgi_params;
+        fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+        fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
+    }
+
+    location / {
+        # This is cool because no php is touched for static content
+        index index.html index.php;
+    }
+}

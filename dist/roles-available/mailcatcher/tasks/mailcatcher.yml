@@ -1,0 +1,36 @@
+---
+- name: MailCatcher | install MailCatcher prerequisite packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - ruby
+    - rubygems
+    - libsqlite3-dev
+    - ruby-dev
+  tags: mailcatcher
+  sudo: true
+
+- name: MailCatcher | Install MailCatcher
+  action: command gem install mailcatcher creates=/usr/local/bin/mailcatcher
+
+# - name: MailCatcher | change php-fpm sendmail_path setting
+#   lineinfile: dest=/etc/php5/fpm/php.ini regexp="^[#|;]?sendmail_path =" insertafter="^[#|;]?sendmail_path =" line="sendmail_path = /usr/local/bin/catchmail -f drupal+fpm@site.dev"
+#   tags: mailcatcher
+#   sudo: true
+#   notify:
+#     - restart php5-fpm
+
+# - name: MailCatcher | change php cli sendmail_path setting
+#   lineinfile: dest=/etc/php5/cli/php.ini regexp="^[#|;]?sendmail_path =" insertafter="^[#|;]?sendmail_path =" line="sendmail_path = /usr/local/bin/catchmail -f drupal+cli@site.dev"
+#   tags: mailcatcher
+#   sudo: true
+
+- name: MailCatcher | kill mailcatcher (this is more reliable than using pkill with rvm)
+  command: curl -s -i -v -X DELETE http://127.0.0.1:1080
+  ignore_errors: yes
+  tags: mailcatcher
+  sudo: true
+
+- name: MailCatcher | run MailCatcher with no ip address restrictions
+  shell: /usr/local/bin/mailcatcher --http-ip=0.0.0.0
+  tags: mailcatcher
+  sudo: true

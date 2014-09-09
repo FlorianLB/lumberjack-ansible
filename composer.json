@@ -1,0 +1,12 @@
+{
+    "name": "flub/ansible-generator",
+    "require": {
+        "symfony/filesystem": "@stable"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "FlorianLB"
+        }
+    ]
+}

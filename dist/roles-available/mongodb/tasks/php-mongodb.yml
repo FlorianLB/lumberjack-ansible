@@ -1,0 +1,36 @@
+---
+
+- apt: name=php5-dev state=present
+
+- name: set pecl php.ini location
+  shell: pecl config-set php_ini /etc/php5/fpm/php.ini
+  tags: php-mongodb
+
+- name: determine php extensions directory
+  shell: php -i | grep -i '^extension_dir' | awk '{print $3}'
+  register: php_extension_dir
+  tags: php-mongodb
+
+- name: install MongoClient for php
+  shell: printf "\n" | pecl install mongo creates={{php_extension_dir.stdout_lines[0]}}/mongo.so
+  tags: php-mongodb
+
+- name: make mongo.so executable
+  file: path={{php_extension_dir.stdout_lines[0]}}/mongo.so mode=0755
+  tags: php-mongodb
+  notify:
+  - restart php5-fpm
+
+- name: add mongo extension to CLI php.ini configuration
+  lineinfile: dest=/etc/php5/cli/php.ini
+              line="extension=mongo.so"
+              state=present
+  tags: php-mongodb
+
+- name: add mongo extension to FPM php.ini configuration
+  lineinfile: dest=/etc/php5/fpm/php.ini
+              line="extension=mongo.so"
+              state=present
+  tags: php-mongodb
+  notify:
+  - restart php5-fpm

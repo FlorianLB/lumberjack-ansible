@@ -1,0 +1,12 @@
+---
+
+- name: update aptitude cache
+  apt: update_cache=yes
+       cache_valid_time=3600
+
+- name: ensure common tools are at the latest version
+  apt: pkg={{ item }} state=latest
+  with_items: system_packages
+
+- name: Assures {{ log_dir }} dir exists
+  file: path={{ log_dir }} state=directory

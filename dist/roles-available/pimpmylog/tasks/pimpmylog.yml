@@ -1,0 +1,28 @@
+---
+- name: Assures /home/vagrant/www/ dir exists
+  file: path=/home/vagrant/www/ state=directory
+
+- name: Pimpmylog | get pimpmylog package
+  git: repo=https://github.com/potsky/PimpMyLog.git dest=/home/vagrant/www/pimpmylog
+  tags: pimpmylog
+  sudo: true
+
+- name: add pimpmylog vhost
+  action: template src=nginx.pimpmylog.vhost.j2 dest=/etc/nginx/sites-available/pimpmylog
+  tags: pimpmylog
+
+- name: link nginx PimpMyLog vhost in sites-enabled
+  action: file src=/etc/nginx/sites-available/pimpmylog dest=/etc/nginx/sites-enabled/pimpmylog state=link
+  tags: pimpmylog
+  notify:
+    - restart nginx
+
+- name: Pimpmylog | ensure Pimpmylog directory permissions
+  file: path=/home/vagrant/www/pimpmylog mode=0777 recurse=yes
+  tags: pimpmylog
+  sudo: true
+
+- name: Pimpmylog | add configuration file
+  action: template src=config.user.json dest=/home/vagrant/www/pimpmylog/config.user.json
+  tags: pimpmylog
+  sudo: true

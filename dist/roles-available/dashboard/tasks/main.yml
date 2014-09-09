@@ -1,0 +1,34 @@
+---
+
+- name: Assures /home/vagrant/www/dashboard dir exists
+  file: path=/home/vagrant/www/dashboard state=directory
+
+- name: update hosts file for dashboard
+  shell: echo "127.0.0.1    {{ host_name }}" | sudo tee -a /etc/hosts
+
+- name: add nginx dashboard vhost
+  action: template src=vhost-dashboard.j2 dest=/etc/nginx/sites-available/dashboard
+  notify:
+    - restart nginx
+
+- name: link nginx dashboard vhost in sites-enabled
+  action: file src=/etc/nginx/sites-available/dashboard dest=/etc/nginx/sites-enabled/dashboard state=link
+  notify:
+    - restart nginx
+
+
+- name: add dashboard index file
+  action: template src=index.php.j2 dest=/home/vagrant/www/dashboard/index.php
+  tags: dashboard
+
+- name: add apc monitoring file
+  copy: src=apc.php dest=/home/vagrant/www/dashboard/apc.php
+  tags: dashboard
+
+- name: add functions php file
+  copy: src=functions.php dest=/home/vagrant/www/dashboard/functions.php
+  tags: dashboard
+
+- name: add phpinfo file
+  copy: src=phpinfo.php dest=/home/vagrant/www/dashboard/phpinfo.php
+  tags: dashboard
