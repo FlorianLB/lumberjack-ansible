@@ -99,6 +99,16 @@
                   </label>
                 </div>
               </div>
+
+
+              <div class="form-group">
+                <label>PHP Redis</label>
+                <div>
+                  <label class="checkbox-inline">
+                    <input name="php5[redis]" type="checkbox" checked/> Install PHP Redis
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
       </div>
