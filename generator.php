@@ -23,8 +23,10 @@ if (!empty($components['php5']['composer'])) {
     $rolesToInstall['composer'] = true;
 }
 
-if (!empty($components['php5']['redis'])) {
-    $rolesToInstall['phpredis'] = true;
+if (!empty($components['redis']) && !empty($components['redis-packages'])) {
+  foreach ($components['redis-packages'] as $key => $value) {
+    $rolesToInstall[$value] = true;
+  }
 }
 
 if (!empty($components['mongodb'])) {
