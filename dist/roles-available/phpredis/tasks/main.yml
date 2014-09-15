@@ -1,4 +1,8 @@
 ---
+
+- name: install php5-dev extensions
+  apt: pkg=php5-dev state=latest
+
 - name: Install unzip
   apt: pkg=unzip state=present
 
@@ -10,19 +14,19 @@
 
 - name: phpize
   command: chdir=/home/vagrant/phpredis-master phpize
-  sudo: true
+  sudo: yes
 
 - name: Configure
   command: chdir=/home/vagrant/phpredis-master ./configure
-  sudo: true
+  sudo: yes
 
 - name: Make Redis
   command: chdir=/home/vagrant/phpredis-master make
-  sudo: true
+  sudo: yes
 
 - name: Make Install The Redis
   command: chdir=/home/vagrant/phpredis-master make install
-  sudo: true
+  sudo: yes
 
 - name: Add PHP extension as mods-available
   shell: echo "extension=redis.so" > /etc/php5/mods-available/redis.ini
