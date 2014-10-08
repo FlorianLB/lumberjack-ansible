@@ -32,6 +32,12 @@ elasticsearch_plugins:
   - { name: 'royrusso/elasticsearch-HQ' }
 <?php endif; ?>
 
+<?php if (isset($rolesToInstall['mariadb'])) : ?>
+mariadb_version: 10.1
+mariadb_repo_url: http://nwps.ws/pub/mariadb/repo/{{ mariadb_version }}/debian
+mysql_root_db_pass: root
+<?php endif; ?>
+
 system_packages:
 <?php foreach ($systemPackages as $packageName) : ?>
   - <?php echo $packageName . PHP_EOL; ?>
