@@ -5,6 +5,3 @@
 
 - name: mysql service state
   service: name=mysql state=started enabled=yes
-
-# - name: create main databse
-#   command: mysql -uroot -e "CREATE DATABASE IF NOT EXISTS aldebaran"

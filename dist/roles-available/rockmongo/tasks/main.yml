@@ -19,7 +19,7 @@
   tags: rockmongo
 
 - name: RockMongo | remove auth
-  lineinfile: dest=/home/vagrant/www/rockmongo/config.php line="$MONGO['servers'][$i]['control_auth'] = false;"
+  replace: dest=/home/vagrant/www/rockmongo/config.php regexp='$MONGO["servers"][$i]["control_auth"] = true;' replace='$MONGO["servers"][$i]["control_auth"] = false;'
   tags: rockmongo
 
 - name: RockMongo | add nginx vhost
