@@ -1,36 +1,25 @@
 ---
 
-- name: Install curl, python-mysqldb, python-pycurl, software-properties-common
-  sudo: yes
+- name: Install python-mysqldb
   apt: pkg={{ item }} state=present
   with_items:
-    - curl
-    - software-properties-common
-    - python-pycurl
     - python-mysqldb
 
 - name: Add MariaDB apt key
-  sudo: yes
   apt_key: url=http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0xcbcb082a1bb943db
 
-
 - name: Add MariaDB apt repository
-  sudo: yes
   apt_repository: "repo='deb {{mariadb_repo_url}} wheezy main' state=present update_cache=yes"
 
-- name: Install MariaDB 10 Server and Client
-  sudo: yes
-  apt: pkg={{ item }} state=present
-  with_items:
-    - mariadb-server
-    - mariadb-client
+- name: Install MariaDB 10 server
+  apt: pkg=mariadb-server state=present
 
-- name: update mysql root password for all root accounts
-  mysql_user: name=root host={{ item }} password={{ mysql_root_db_pass }}
+- name: create database user
+  mysql_user: name={{ mysql_db_user }} password={{ mysql_db_password }} priv=*.*:ALL host={{ item }}
   with_items:
-   - 127.0.0.1
-   - ::1
-   - localhost
+    - 127.0.0.1
+    - ::1
+    - localhost
 
 - name: mariadb service state
   service: name=mysql state=started enabled=yes

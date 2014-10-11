@@ -1,7 +1,19 @@
 ---
 
+- name: Install python-mysqldb
+  apt: pkg={{ item }} state=present
+  with_items:
+    - python-mysqldb
+
 - name: install mysql server
   apt: name=mysql-server state=present
 
 - name: mysql service state
   service: name=mysql state=started enabled=yes
+
+- name: create database user
+  mysql_user: name={{ mysql_db_user }} password={{ mysql_db_password }} priv=*.*:ALL host={{ item }}
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost

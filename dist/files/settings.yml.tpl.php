@@ -35,7 +35,11 @@ elasticsearch_plugins:
 <?php if (isset($rolesToInstall['mariadb'])) : ?>
 mariadb_version: 10.1
 mariadb_repo_url: http://nwps.ws/pub/mariadb/repo/{{ mariadb_version }}/debian
-mysql_root_db_pass: root
+<?php endif; ?>
+
+<?php if (isset($rolesToInstall['mariadb']) || isset($rolesToInstall['mysql'])) : ?>
+mysql_db_user: vagrant
+mysql_db_password: vagrant
 <?php endif; ?>
 
 system_packages:
