@@ -8,6 +8,13 @@
             "category": "database"
         },
         {
+            "name": "MariaDB",
+            "icon": "assets/img/mariadb-logo.png",
+            "icon_height": 60,
+            "input_name": "mariadb",
+            "category": "database"
+        },
+        {
             "name": "MongoDB",
             "icon": "assets/img/mongodb-logo.png",
             "icon_height": 60,
