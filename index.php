@@ -16,9 +16,6 @@
   <script>
     $(document).ready(function() {
       $('.select2-tags').select2({tags: []});
-      $("#redis-package").select2( {
-        placeholder: "Available Redis dependencies"
-      });
     });
   </script>
 </head>
@@ -156,15 +153,6 @@
                     Install <?php echo $component->name; ?>
                   <?php endif; ?>
                 </label>
-
-                <?php if ('redis' === (string) $component->input_name) : ?>
-                  </p>
-                    <select id="redis-package" name="redis-packages[]" multiple>
-                      <option value="phpredis">phpredis</option>
-                      <option value="predis" disabled="true">predis</option>
-                    </select>
-                  <p>
-                <? endif; ?>
               </div>
             </div>
           <?php
