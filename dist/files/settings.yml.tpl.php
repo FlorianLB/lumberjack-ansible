@@ -23,6 +23,14 @@ nginx_port_rockmongo: "1092"
 memcached_memory: "128" # Memory size in MB
 <?php endif; ?>
 
+<?php if (isset($rolesToInstall['drupal']['drush'])) : ?>
+#drush
+drush_install_mode: composer
+drush_composer_bin: /usr/local/bin/composer
+drush_composer_version: 6.*
+drush_composer_user: vagrant
+drush_bash_completion_d: /etc/bash_completion.d/
+<?php endif; ?>
 
 <?php if (isset($rolesToInstall['elasticsearch'])) : ?>
 # ElasticSearch
