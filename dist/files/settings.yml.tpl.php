@@ -23,7 +23,7 @@ nginx_port_rockmongo: "1092"
 memcached_memory: "128" # Memory size in MB
 <?php endif; ?>
 
-<?php if (isset($rolesToInstall['drupal']['drush'])) : ?>
+<?php if (isset($rolesToInstall['drush'])) : ?>
 #drush
 drush_install_mode: composer
 drush_composer_bin: /usr/local/bin/composer

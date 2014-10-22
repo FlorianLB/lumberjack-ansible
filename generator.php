@@ -23,6 +23,11 @@ if (!empty($components['php5']['composer'])) {
     $rolesToInstall['composer'] = true;
 }
 
+if (!empty($components['drush'])) {
+    $rolesToInstall['composer'] = true;
+    $rolesToInstall['drush'] = true;
+}
+
 if (!empty($components['mongodb'])) {
     $rolesToInstall['rockmongo'] = true;
 }

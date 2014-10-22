@@ -105,6 +105,39 @@
 
       <div class="clearfix panel panel-default">
         <div class="panel-heading">
+          <h2><img src="assets/img/druplicon.png" alt="PHP" height="40" /></span></h2>
+        </div>
+
+        <div class="panel-body">
+            <input name="drupal[enabled]" type="hidden" checked readonly value="on"/>
+              <div class="form-group">
+                <label>Drush</label>
+                <div>
+                  <label class="checkbox-inline">
+                    <input name="drush" type="checkbox" checked/> Install Drush
+                  </label>
+                </div>
+              </div>
+            <div class="form-inline">
+              <div class="form-group">
+                <label>Drush Version</label>
+                <div>
+                  <label class="radio-inline">
+                    <input type="radio" name="drush[version]" value="6" checked> 6.*
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="drush[version]" value="7" disabled> 7.*
+                    <span class="glyphicon glyphicon-exclamation-sign text-danger" data-toggle="tooltip" data-placement="right" title="Not supported yet"></span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+      </div>
+
+      <div class="clearfix panel panel-default">
+        <div class="panel-heading">
           <h2><span class="glyphicon glyphicon-tower"></span> System</h2>
         </div>
 
