@@ -1,0 +1,12 @@
+---
+- name: "Install Drush with global Composer"
+  shell: "composer global require drush/drush:{{drush_composer_version}} --no-interaction --no-ansi"
+  sudo_user: "{{ drush_composer_user }}"
+- name: "Create global Drush configuration folder"
+  file: path=/etc/drush/ state=directory
+  tags: [drush]
+- name: "Configure Drush BASH completion"
+  file: src={{drush_complete_sh}} path={{drush_bash_completion_d}}/drush state=link
+  when: drush_complete_sh is defined
+
+
