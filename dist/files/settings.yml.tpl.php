@@ -30,7 +30,12 @@ drush_composer_bin: /usr/local/bin/composer
 drush_composer_version: 6.*
 drush_composer_user: vagrant
 drush_bash_completion_d: /etc/bash_completion.d/
+vhost = "vhost-drupal"
+<?php else : ?>
+vhost = "vhost-sf2"
 <?php endif; ?>
+
+
 
 <?php if (isset($rolesToInstall['elasticsearch'])) : ?>
 # ElasticSearch

@@ -1,6 +1,6 @@
 ---
   - name: add nginx vhost
-    action: "template src=vhost-sf2.j2 dest=/etc/nginx/sites-available/{{ host_name }}"
+    action: "template src={{ vhost }}.j2 dest=/etc/nginx/sites-available/{{ host_name }}"
     notify:
       - restart nginx
 
