@@ -109,7 +109,7 @@
         </div>
 
         <div class="panel-body">
-            <input name="drupal[enabled]" type="hidden" checked readonly value="on"/>
+            <input name="drush[enabled]" type="hidden" checked readonly value="on"/>
               <div class="form-group">
                 <label>Drush</label>
                 <div>
