@@ -20,7 +20,9 @@
 }
 
 .package h3 {text-align: center;}
-
+.package .select2-container-multi {
+    width: 156px;
+}
 
 .bs-callout{
     padding:20px;

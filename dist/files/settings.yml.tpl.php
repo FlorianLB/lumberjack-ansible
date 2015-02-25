@@ -42,6 +42,13 @@ mysql_db_user: vagrant
 mysql_db_password: vagrant
 <?php endif; ?>
 
+<?php if (isset($rolesToInstall['redis'])) : ?>
+# Redis (look at dist/roles-available/redis/defaults/mail.yml for all options)
+# Conf based on https://github.com/DavidWittman/ansible-redis
+redis_bind: 127.0.0.1
+redis_port: 6379
+<?php endif; ?>
+
 system_packages:
 <?php foreach ($systemPackages as $packageName) : ?>
   - <?php echo $packageName . PHP_EOL; ?>

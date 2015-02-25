@@ -1,0 +1,37 @@
+---
+
+- name: install php5-dev extensions
+  apt: pkg=php5-dev state=latest
+
+- name: Install unzip
+  apt: pkg=unzip state=present
+
+- name: Download phpredis
+  get_url: url=https://codeload.github.com/nicolasff/phpredis/zip/master dest=/home/vagrant/master.zip force=yes
+
+- name: Unzip downloaded file
+  command: unzip -o /home/vagrant/master.zip -d /home/vagrant/
+
+- name: phpize
+  command: chdir=/home/vagrant/phpredis-master phpize
+  sudo: yes
+
+- name: Configure
+  command: chdir=/home/vagrant/phpredis-master ./configure
+  sudo: yes
+
+- name: Make Redis
+  command: chdir=/home/vagrant/phpredis-master make
+  sudo: yes
+
+- name: Make Install The Redis
+  command: chdir=/home/vagrant/phpredis-master make install
+  sudo: yes
+
+- name: Add PHP extension as mods-available
+  shell: echo "extension=redis.so" > /etc/php5/mods-available/redis.ini
+
+- name: Active PHP extension
+  action: "file src=/etc/php5/mods-available/redis.ini dest=/etc/php5/conf.d/20-redis.ini state=link"
+  notify:
+    - restart php5-fpm

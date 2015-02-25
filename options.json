@@ -33,8 +33,7 @@
             "icon": "assets/img/redis-logo.png",
             "icon_height": 60,
             "input_name": "redis",
-            "category": "kv-store",
-            "supported": false
+            "category": "kv-store"
         },
         {
             "name": "Memcached",
