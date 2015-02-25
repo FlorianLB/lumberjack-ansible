@@ -7,7 +7,7 @@ $components = $_POST;
 
 $general = $_POST['general'];
 
-$rolesToInstall = array('common' => true, 'php5' => true, 'nginx' => true, 'dashboard' => true);
+$rolesToInstall = array('init' => true, 'php5' => true, 'nginx' => true, 'dashboard' => true);
 
 foreach ($components as $componentName => $value) {
     if (empty($value['enabled'])) {
@@ -34,6 +34,9 @@ if (!empty($components['mongodb'])) {
 if (!empty($components['memcached'])) {
     $rolesToInstall['memcadmin'] = true;
 }
+
+// Always in last
+$rolesToInstall['app'] = true;
 
 $systemPackages = !empty($components['system-packages']) ? explode(',', $components['system-packages']) : array();
 $systemPackages = array_unique(array_merge($systemPackages, array('curl', 'wget')));
