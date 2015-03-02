@@ -1,4 +1,4 @@
-# This a Symfony2 configuration
+# Symfony2 configuration
 
 server {
     listen 80;

@@ -6,7 +6,7 @@ Lumberjack is an Vagrant+Ansible box generator. Its boxes are generated with Ngi
 [http://lumberjack-ansible.herokuapp.com](http://lumberjack-ansible.herokuapp.com/)
 
 
-##Install Lumberjack
+##Local installation
 Clone the repo and use `php -S localhost:8000`
 
 ## Usages

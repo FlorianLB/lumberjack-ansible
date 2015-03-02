@@ -16,6 +16,8 @@
   <script>
     $(document).ready(function() {
       $('.select2-tags').select2({tags: []});
+
+      $('.select2-simple-select').select2({allowClear: true});
     });
   </script>
 </head>
@@ -99,6 +101,19 @@
                   </label>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="framework">Framework</label>
+                <div>
+                  <label>
+                    <select name="framework" style="width:150px;" class="select2-simple-select form-control" data-placeholder="None" id="framework">
+                      <option></option>
+                      <option value="symfony2">Symfony 2</option>
+                      <option value="drupal7">Drupal 7</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
       </div>
@@ -171,7 +186,7 @@
       ?>
 
       <p>
-        <button type="submit" class="btn btn-primary btn-lg">
+        <button id="generate-btn" type="submit" class="btn btn-primary btn-lg">
           <span class="glyphicon glyphicon-cloud-download"></span>
 
           Generate your Vagrant/Ansible configuration

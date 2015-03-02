@@ -5,7 +5,8 @@ use Symfony\Component\Filesystem\Filesystem;
 
 $components = $_POST;
 
-$general = $_POST['general'];
+$general   = $_POST['general'];
+$framework = $_POST['framework'];
 
 $rolesToInstall = array('init' => true, 'php5' => true, 'nginx' => true, 'dashboard' => true);
 

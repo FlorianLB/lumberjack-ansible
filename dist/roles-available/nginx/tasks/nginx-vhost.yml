@@ -1,8 +1,15 @@
 ---
-  - name: add nginx vhost
-    action: "template src=vhost-sf2.j2 dest=/etc/nginx/sites-available/{{ host_name }}"
-    notify:
-      - restart nginx
+  - name: add nginx vhost (SF2 config)
+    action: "template src=symfony2.vhost dest=/etc/nginx/sites-available/{{ host_name }}"
+    when: framework == 'symfony2'
+
+  - name: add nginx vhost (D7 config)
+    action: "template src=drupal7.vhost dest=/etc/nginx/sites-available/{{ host_name }}"
+    when: framework == 'drupal7'
+
+  - name: add nginx vhost (default config)
+    action: "template src=default.vhost dest=/etc/nginx/sites-available/{{ host_name }}"
+    when: not framework
 
   - name: link nginx vhost in sites-enabled
     action: "file src=/etc/nginx/sites-available/{{ host_name }} dest=/etc/nginx/sites-enabled/{{ host_name }} state=link"

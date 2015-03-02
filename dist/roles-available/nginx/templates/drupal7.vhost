@@ -1,0 +1,25 @@
+# Drupal7 configuration (todo)
+
+server {
+    listen 80;
+    server_name {{ host_name }};
+
+    root         /home/vagrant/www/project/web;
+    access_log   {{ log_dir }}/nginx.{{ host_name }}.access.log;
+    error_log    {{ log_dir }}/nginx.{{ host_name }}.error.log;
+
+    location / {
+        # try to serve file directly, fallback to app.php
+        try_files $uri /app.php$is_args$args;
+    }
+
+    location ~ ^/(app|app_dev)\.php(/|$) {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_intercept_errors on;
+        fastcgi_pass   unix:/var/run/php5-fpm.sock;
+        fastcgi_index  index.php;
+    }
+}
