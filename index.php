@@ -18,6 +18,17 @@
       $('.select2-tags').select2({tags: []});
 
       $('.select2-simple-select').select2({allowClear: true});
+
+      $('form').on('submit', function() {
+        var $modal = $('#modal-usage');
+        var hostname = $('#hostname').val();
+        $modal
+          .find('.hostname')
+            .text(hostname)
+          .parent('a')
+            .attr('href', 'http://' + hostname + ':1000');
+        $modal.modal();
+      });
     });
   </script>
 </head>
@@ -186,7 +197,7 @@
       ?>
 
       <p>
-        <button id="generate-btn" type="submit" class="btn btn-primary btn-lg">
+        <button type="submit" class="btn btn-primary btn-lg">
           <span class="glyphicon glyphicon-cloud-download"></span>
 
           Generate your Vagrant/Ansible configuration
@@ -196,5 +207,26 @@
     </form>
 
   </div>
+
+
+  <div id="modal-usage" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Usage of the downloaded archive</h4>
+        </div>
+        <div class="modal-body">
+          <p>The downloaded archive is composed of 2 elements : a <code>Vagrantfile</code> and a folder called <code>ansible</code> that contains all provisionning files.</p>
+          <h5>What's next ?</h5>
+          <ul>
+            <li><code>vagrant up</code></li>
+            <li>Wait provisioning end&hellip;</li>
+            <li>Go to <em><code><a href="">http://<span class="hostname"></span>:1000</a></code></em>, you will see a dashboard that list tools related to components installed on the virtual machine.</li>
+          </ul>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </body>
 </html>
