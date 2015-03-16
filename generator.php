@@ -63,9 +63,12 @@ foreach (['app.yml.tpl.php', 'dev.tpl.php', 'settings.yml.tpl.php'] as $file) {
     file_put_contents($buildDir . '/ansible/' . str_replace('.tpl.php', '', $file), ob_get_clean());
 }
 
+// use https://github.com/bfolliot/vagrant-yml
 ob_start();
-require __DIR__ . '/dist/files/Vagrantfile.tpl.php';
-file_put_contents($buildDir . '/Vagrantfile', ob_get_clean());
+require __DIR__ . '/dist/files/vagrant.yml.tpl.php';
+file_put_contents($buildDir . '/vagrant.yml', ob_get_clean());
+
+$filesystem->copy(__DIR__ . '/dist/files/Vagrantfile.dist', $buildDir . '/Vagrantfile');
 
 ob_start();
 require __DIR__ . '/dist/files/dashboard.tpl.php';
