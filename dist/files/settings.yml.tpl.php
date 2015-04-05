@@ -4,8 +4,8 @@ user: "vagrant"
 
 host_name: "<?php echo $general['hostname']; ?>"
 log_dir: "/home/vagrant/logs"
-<?php if (!empty($framework)) : ?>
-framework: "<?php echo $framework; ?>"
+framework: <?php if (!empty($framework)) : ?>
+ "<?php echo $framework; ?>"
 <?php endif; ?>
 
 # Nginx
