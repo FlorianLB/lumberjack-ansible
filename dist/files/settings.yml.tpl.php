@@ -10,6 +10,8 @@ framework: <?php if (!empty($framework)) : ?>
 
 # Nginx
 nginx_port_dashboard: "1000"
+nginx_root_folder: "/home/vagrant/www/project<?php echo $general['root_folder']; ?>"
+
 
 <?php if (isset($rolesToInstall['pimpmylog'])) : ?>
 nginx_port_pimpmylog: "1090"

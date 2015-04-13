@@ -74,13 +74,39 @@
               <label for="vm_name">Local VM name</label>
               <input type="text" class="form-control" id="vm_name" name="general[vm_name]" value="foobar-dev">
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>
+            <span class="glyphicon glyphicon-cog"></span>
+            Project parameters
+          </h2>
+        </div>
+        <div class="panel-body">
+          <div class="row">
             <div class="form-group col-md-6">
               <label for="project_name">Project name</label>
               <input type="text" class="form-control" id="project_name" name="general[project_name]" value="My project">
             </div>
+            <div class="form-group col-md-6">
+              <label for="framework">Framework</label>
+              <div>
+                <label>
+                  <select name="framework" style="width:150px;" class="select2-simple-select form-control" data-placeholder="None" id="framework">
+                    <option></option>
+                    <option value="symfony2">Symfony 2</option>
+                    <option value="drupal7">Drupal 7</option>
+                  </select>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
 
       <div class="clearfix panel panel-default">
         <div class="panel-heading">
@@ -109,19 +135,6 @@
                 <div>
                   <label class="checkbox-inline">
                     <input name="php5[composer]" type="checkbox" checked/> Install Composer
-                  </label>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="framework">Framework</label>
-                <div>
-                  <label>
-                    <select name="framework" style="width:150px;" class="select2-simple-select form-control" data-placeholder="None" id="framework">
-                      <option></option>
-                      <option value="symfony2">Symfony 2</option>
-                      <option value="drupal7">Drupal 7</option>
-                    </select>
                   </label>
                 </div>
               </div>
