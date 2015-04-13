@@ -5,7 +5,6 @@ Lumberjack is an Vagrant+Ansible box generator. Its boxes are generated with Ngi
 
 [http://lumberjack-ansible.herokuapp.com](http://lumberjack-ansible.herokuapp.com/)
 
-
 ## Local installation
 
 1. Clone the repo
@@ -19,3 +18,8 @@ Lumberjack is an Vagrant+Ansible box generator. Its boxes are generated with Ngi
 2. Download an untar the files
 3. Vagrant up inside the folder
 4. Profit
+
+## Requirements to use generated boxes
+
+* [Vagrant](https://www.vagrantup.com/downloads.html) (version >= 1.6)
+* [Ansible](https://github.com/ansible/ansible) (version >= 1.8)
