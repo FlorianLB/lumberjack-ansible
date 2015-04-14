@@ -4,7 +4,7 @@ server {
     listen 80;
     server_name {{ host_name }};
 
-    root         {{ nginx_root_folder }};
+    root         {{ doc_root }};
     access_log   {{ log_dir }}/nginx.{{ host_name }}.access.log;
     error_log    {{ log_dir }}/nginx.{{ host_name }}.error.log;
 

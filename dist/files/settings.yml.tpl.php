@@ -3,6 +3,7 @@
 user: "vagrant"
 
 host_name: "<?php echo $general['hostname']; ?>"
+doc_root: "/home/vagrant/www/project<?php echo $general['root_folder']; ?>"
 log_dir: "/home/vagrant/logs"
 framework: <?php if (!empty($framework)) : ?>
  "<?php echo $framework; ?>"
@@ -10,7 +11,6 @@ framework: <?php if (!empty($framework)) : ?>
 
 # Nginx
 nginx_port_dashboard: "1000"
-nginx_root_folder: "/home/vagrant/www/project<?php echo $general['root_folder']; ?>"
 
 
 <?php if (isset($rolesToInstall['pimpmylog'])) : ?>
