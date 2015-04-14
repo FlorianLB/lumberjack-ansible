@@ -5,9 +5,12 @@ Lumberjack is an Vagrant+Ansible box generator. Its boxes are generated with Ngi
 
 [http://lumberjack-ansible.herokuapp.com](http://lumberjack-ansible.herokuapp.com/)
 
+## Local installation
 
-##Local installation
-Clone the repo and use `php -S localhost:8000`
+1. Clone the repo
+2. Download Composer: https://getcomposer.org/download/
+3. ./composer.phar install
+4. php -S localhost:8000
 
 ## Usages
 
@@ -15,3 +18,8 @@ Clone the repo and use `php -S localhost:8000`
 2. Download an untar the files
 3. Vagrant up inside the folder
 4. Profit
+
+## Requirements to use generated boxes
+
+* [Vagrant](https://www.vagrantup.com/downloads.html) (version >= 1.6)
+* [Ansible](https://github.com/ansible/ansible) (version >= 1.8)
