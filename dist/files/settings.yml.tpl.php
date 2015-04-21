@@ -7,9 +7,17 @@ log_dir: "/home/vagrant/logs"
 framework: <?php if (!empty($framework)) : ?>
  "<?php echo $framework; ?>"
 <?php endif; ?>
+<?php if (!empty($framework) && 'drupal7' === $framework) : ?>
+doc_root: "/home/vagrant/www/project"
+<?php endif; ?>
+<?php if (!empty($framework) && 'symfony2' === $framework) : ?>
+doc_root: "/home/vagrant/www/project/web"
+<?php endif; ?>
+
 
 # Nginx
 nginx_port_dashboard: "1000"
+
 
 <?php if (isset($rolesToInstall['pimpmylog'])) : ?>
 nginx_port_pimpmylog: "1090"
