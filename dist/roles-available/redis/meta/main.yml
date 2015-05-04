@@ -16,3 +16,6 @@ galaxy_info:
   categories:
     - database
     - database:nosql
+
+dependencies: []
+version: 1.0.3
